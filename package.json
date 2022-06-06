@@ -1,0 +1,31 @@
+{
+  "name": "jk-cli",
+  "version": "1.0.0",
+  "description": "从零开始搭建一个自定义脚手架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx babel src -w -d dist"
+  },
+  "bin": {
+    "jk": "/bin/index.js"
+  },
+  "author": "jking",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "chalk": "^4.0.0",
+    "commander": "^9.2.0",
+    "fs-extra": "^10.1.0",
+    "ini": "^3.0.0",
+    "inquirer": "^8.2.4",
+    "ora": "^3.4.0",
+    "validate-npm-package-name": "^4.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10"
+  },
+  "type": "commonjs"
+}
