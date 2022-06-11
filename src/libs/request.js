@@ -14,3 +14,4 @@ globalAxios.interceptors.response.use((res)=>{
 },err=>{
     return Promise.reject(err)
 })
+export default globalAxios
