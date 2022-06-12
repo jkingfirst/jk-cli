@@ -3,6 +3,7 @@ import chalk from "chalk";
 const Inquirer = require('inquirer')
 import create from "./libs/create";
 import ora from 'ora'
+const figlet = require('figlet')
 function camelize (str) {
     return str.replace(/-(\w)/g, (_, c) => c ? c.toUpperCase() : '')
 }
@@ -48,6 +49,24 @@ program
 program.on('--help',function(){
 console.log(`
 run ${chalk.green('jk <command> --help')} for detailed usage of given commnad`)
+   // 美化jk-cli logo
+    console.log(
+        '\r\n'+
+        figlet.textSync('jk-cli', {
+            font: '3D-ASCII',
+            horizontalLayout: 'default',
+            verticalLayout: 'default',
+            width: 80,
+            whitespaceBreak: true
+        }, function(err, data) {
+            if (err) {
+                console.log('Something went wrong...');
+                console.dir(err);
+                return;
+            }
+            console.log(data);
+        })
+    )
 })
 program.parse(process.argv)
 /*new Inquirer.prompt([

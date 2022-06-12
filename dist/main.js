@@ -14,6 +14,8 @@ const {
 
 const Inquirer = require('inquirer');
 
+const figlet = require('figlet');
+
 function camelize(str) {
   return str.replace(/-(\w)/g, (_, c) => c ? c.toUpperCase() : '');
 } // commander passes the Command object itself as options,
@@ -42,7 +44,23 @@ program.command('config [value]').description('inspect and modify the config').o
 });
 program.on('--help', function () {
   console.log(`
-run ${_chalk.default.green('jk <command> --help')} for detailed usage of given commnad`);
+run ${_chalk.default.green('jk <command> --help')} for detailed usage of given commnad`); // 美化jk-cli logo
+
+  console.log('\r\n' + figlet.textSync('jk-cli', {
+    font: '3D-ASCII',
+    horizontalLayout: 'default',
+    verticalLayout: 'default',
+    width: 80,
+    whitespaceBreak: true
+  }, function (err, data) {
+    if (err) {
+      console.log('Something went wrong...');
+      console.dir(err);
+      return;
+    }
+
+    console.log(data);
+  }));
 });
 program.parse(process.argv);
 /*new Inquirer.prompt([

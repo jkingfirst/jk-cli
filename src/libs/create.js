@@ -14,7 +14,7 @@ async function create(projectName, options){
     console.log(targetDir)
     console.log(path.relative('../', cwd))
     const result = validateProjectName(name)
-    if (!result.validForNewPackages) {
+    if (!result.validForNewPackages) { // 项目名是否合法
         console.error(chalk.red(`Invalid project name: "${name}"`))
         result.errors && result.errors.forEach(err => {
             console.error(chalk.red.dim('Error: ' + err))
