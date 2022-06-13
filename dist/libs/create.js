@@ -20,7 +20,7 @@ async function create(projectName, options) {
   const name = inCurrent ? path.relative('../', cwd) : projectName;
   const targetDir = path.resolve(cwd, projectName);
   console.log(targetDir);
-  console.log(path.relative('../', cwd));
+  console.log(path.relative('../', cwd), '-----');
   const result = validateProjectName(name);
 
   if (!result.validForNewPackages) {
@@ -53,7 +53,7 @@ async function create(projectName, options) {
       } else {
         const {
           action
-        } = inquirer.prompt([{
+        } = await inquirer.prompt([{
           name: 'action',
           type: 'list',
           message: `Target directory ${chalk.cyan(targetDir)} is already exist Pick an action.`,

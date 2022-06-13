@@ -12,7 +12,7 @@ async function create(projectName, options){
     const name = inCurrent ? path.relative('../', cwd) : projectName
     const targetDir = path.resolve(cwd, projectName)
     console.log(targetDir)
-    console.log(path.relative('../', cwd))
+    console.log(path.relative('../', cwd), '-----')
     const result = validateProjectName(name)
     if (!result.validForNewPackages) { // 项目名是否合法
         console.error(chalk.red(`Invalid project name: "${name}"`))
@@ -39,7 +39,7 @@ async function create(projectName, options){
                     return false
                 }
             } else {
-                const {action}  = inquirer.prompt([
+                const {action}  = await inquirer.prompt([
                     {
                         name:'action',
                         type:'list',
