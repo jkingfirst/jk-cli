@@ -13,7 +13,8 @@ var _downloadGitRepo = _interopRequireDefault(require("./downloadGitRepo"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class Creator {
-  constructor(targetDir, options) {
+  constructor(projectName, targetDir, options) {
+    this.projectName = projectName;
     this.targetDir = targetDir;
     this.options = options;
   }
@@ -35,9 +36,13 @@ class Creator {
       message: '请选择模板',
       choices: reps
     });
-    const spinner = (0, _ora.default)(_chalk.default.green('download...')).start();
+    const spinner = (0, _ora.default)(_chalk.default.green('🚀 🚀 🚀 download...')).start();
     await (0, _downloadGitRepo.default)(`jkingfirst/${template}`, this.targetDir);
     spinner.succeed();
+    console.log(`\n\r 🍦🍦🍦 You successfully create ${_chalk.default.cyan(this.projectName)} `);
+    console.log(`\n\r cd ${_chalk.default.cyan(this.projectName)}`);
+    console.log('\n\r npm install');
+    console.log('\n\r npm run serve');
   }
 
 }

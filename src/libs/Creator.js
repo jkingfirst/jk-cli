@@ -4,7 +4,8 @@ import ora from "ora";
 import chalk from "chalk";
 import downloadGit from './downloadGitRepo'
 class Creator{
-    constructor(targetDir,options) {
+    constructor(projectName,targetDir,options) {
+        this.projectName = projectName
         this.targetDir = targetDir
         this.options = options
     }
@@ -23,9 +24,13 @@ class Creator{
             message: '请选择模板',
             choices:reps,
         })
-        const spinner = ora(chalk.green('download...')).start();
+        const spinner = ora(chalk.green('🚀 🚀 🚀 download...')).start();
         await downloadGit(`jkingfirst/${template}`,this.targetDir)
         spinner.succeed()
+        console.log(`\n\r 🍦🍦🍦 You successfully create ${chalk.cyan(this.projectName)} `)
+        console.log(`\n\r cd ${chalk.cyan(this.projectName)}`)
+        console.log('\n\r npm install')
+        console.log('\n\r npm run serve')
     }
 }
 module.exports = Creator

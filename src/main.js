@@ -24,11 +24,11 @@ function cleanArgs (cmd) {
 }
 
 program
-    .name('jk-cli')
-    .version(`jk-cli ${require('../package.json').version}`,'-v,--version', 'output the version number')
+    .name('jvue-cli')
+    .version(`jvue-cli ${require('../package.json').version}`,'-v,--version', 'output the version number')
     .usage('<command> [options]')
 program
-    .name('jk-cli')
+    .name('jvue-cli')
     .command('create <project-name>')
     .option('-f, --force', 'overwrite target directory if it exists')
     .description('create a new project')
@@ -49,10 +49,10 @@ program
 program.on('--help',function(){
 console.log(`
 run ${chalk.green('jk <command> --help')} for detailed usage of given commnad`)
-   // 美化jk-cli logo
+   // 美化jvue-cli logo
     console.log(
         '\r\n'+
-        figlet.textSync('jk-cli', {
+        figlet.textSync('jvue-cli', {
             font: '3D-ASCII',
             horizontalLayout: 'default',
             verticalLayout: 'default',
@@ -69,36 +69,3 @@ run ${chalk.green('jk <command> --help')} for detailed usage of given commnad`)
     )
 })
 program.parse(process.argv)
-/*new Inquirer.prompt([
-    {
-        name: "vue",
-        // 多选交互功能
-        // 单选将这里修改为 list 即可
-        type: "list",
-        message: "Check the features needed for your project:",
-        choices: [
-            {
-                name: "Babel",
-                checked: true,
-            },
-            {
-                name: "TypeScript",
-            },
-            {
-                name: "Progressive Web App (PWA) Support",
-            },
-            {
-                name: "Router",
-            },
-        ],
-    },
-]).then((data) => {
-    console.log(data);
-});
-
-const spinner = ora(chalk.green('Loading unicorns')).start();
-
-setTimeout(() => {
-    spinner.color = 'yellow';
-    spinner.text = 'Loading rainbows';
-}, 5000);*/

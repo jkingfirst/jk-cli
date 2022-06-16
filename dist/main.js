@@ -35,8 +35,8 @@ function cleanArgs(cmd) {
   return args;
 }
 
-program.name('jk-cli').version(`jk-cli ${require('../package.json').version}`, '-v,--version', 'output the version number').usage('<command> [options]');
-program.name('jk-cli').command('create <project-name>').option('-f, --force', 'overwrite target directory if it exists').description('create a new project').action((name, cmd) => {
+program.name('jvue-cli').version(`jvue-cli ${require('../package.json').version}`, '-v,--version', 'output the version number').usage('<command> [options]');
+program.name('jvue-cli').command('create <project-name>').option('-f, --force', 'overwrite target directory if it exists').description('create a new project').action((name, cmd) => {
   (0, _create.default)(name, cmd);
 });
 program.command('config [value]').description('inspect and modify the config').option('-g, --get <path>', 'get value from option').option('-s, --set <path> <value>', 'set option value').option('-d, --delete <path>', 'delete option from config').option('-e, --edit', 'open config with default editor').option('--json', 'outputs JSON result only').action((name, options, command) => {
@@ -44,9 +44,9 @@ program.command('config [value]').description('inspect and modify the config').o
 });
 program.on('--help', function () {
   console.log(`
-run ${_chalk.default.green('jk <command> --help')} for detailed usage of given commnad`); // 美化jk-cli logo
+run ${_chalk.default.green('jk <command> --help')} for detailed usage of given commnad`); // 美化jvue-cli logo
 
-  console.log('\r\n' + figlet.textSync('jk-cli', {
+  console.log('\r\n' + figlet.textSync('jvue-cli', {
     font: '3D-ASCII',
     horizontalLayout: 'default',
     verticalLayout: 'default',
@@ -63,36 +63,3 @@ run ${_chalk.default.green('jk <command> --help')} for detailed usage of given c
   }));
 });
 program.parse(process.argv);
-/*new Inquirer.prompt([
-    {
-        name: "vue",
-        // 多选交互功能
-        // 单选将这里修改为 list 即可
-        type: "list",
-        message: "Check the features needed for your project:",
-        choices: [
-            {
-                name: "Babel",
-                checked: true,
-            },
-            {
-                name: "TypeScript",
-            },
-            {
-                name: "Progressive Web App (PWA) Support",
-            },
-            {
-                name: "Router",
-            },
-        ],
-    },
-]).then((data) => {
-    console.log(data);
-});
-
-const spinner = ora(chalk.green('Loading unicorns')).start();
-
-setTimeout(() => {
-    spinner.color = 'yellow';
-    spinner.text = 'Loading rainbows';
-}, 5000);*/

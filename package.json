@@ -1,5 +1,5 @@
 {
-  "name": "jk-cli",
+  "name": "j-cli",
   "version": "1.0.0",
   "description": "从零开始搭建一个自定义脚手架",
   "main": "index.js",
