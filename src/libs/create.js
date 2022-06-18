@@ -60,7 +60,7 @@ async function create(projectName, options){
             }
         }
     }
-    const create = new Creator(targetDir,options)
+    const create = new Creator(projectName, targetDir)
     create.create()
 }
 

@@ -37,6 +37,7 @@ function cleanArgs(cmd) {
 
 program.name('jvue-cli').version(`jvue-cli ${require('../package.json').version}`, '-v,--version', 'output the version number').usage('<command> [options]');
 program.name('jvue-cli').command('create <project-name>').option('-f, --force', 'overwrite target directory if it exists').description('create a new project').action((name, cmd) => {
+  // 创建项目
   (0, _create.default)(name, cmd);
 });
 program.command('config [value]').description('inspect and modify the config').option('-g, --get <path>', 'get value from option').option('-s, --set <path> <value>', 'set option value').option('-d, --delete <path>', 'delete option from config').option('-e, --edit', 'open config with default editor').option('--json', 'outputs JSON result only').action((name, options, command) => {
@@ -44,13 +45,13 @@ program.command('config [value]').description('inspect and modify the config').o
 });
 program.on('--help', function () {
   console.log(`
-run ${_chalk.default.green('jk <command> --help')} for detailed usage of given commnad`); // 美化jvue-cli logo
+run ${_chalk.default.green('jvue <command> --help')} for detailed usage of given commnad`); // 美化jvue-cli logo
 
   console.log('\r\n' + figlet.textSync('jvue-cli', {
     font: '3D-ASCII',
     horizontalLayout: 'default',
     verticalLayout: 'default',
-    width: 80,
+    width: 160,
     whitespaceBreak: true
   }, function (err, data) {
     if (err) {

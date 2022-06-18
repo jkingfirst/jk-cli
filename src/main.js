@@ -33,6 +33,7 @@ program
     .option('-f, --force', 'overwrite target directory if it exists')
     .description('create a new project')
     .action((name,cmd)=>{
+        // 创建项目
         create(name,cmd)
     })
 program
@@ -48,7 +49,7 @@ program
     })
 program.on('--help',function(){
 console.log(`
-run ${chalk.green('jk <command> --help')} for detailed usage of given commnad`)
+run ${chalk.green('jvue <command> --help')} for detailed usage of given commnad`)
    // 美化jvue-cli logo
     console.log(
         '\r\n'+
@@ -56,7 +57,7 @@ run ${chalk.green('jk <command> --help')} for detailed usage of given commnad`)
             font: '3D-ASCII',
             horizontalLayout: 'default',
             verticalLayout: 'default',
-            width: 80,
+            width: 160,
             whitespaceBreak: true
         }, function(err, data) {
             if (err) {

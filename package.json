@@ -1,5 +1,5 @@
 {
-  "name": "j-cli",
+  "name": "jvue-cli",
   "version": "1.0.0",
   "description": "从零开始搭建一个自定义脚手架",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "build": "npx babel src -w -d dist"
   },
   "bin": {
-    "jk": "/bin/index.js"
+    "jvue": "/bin/index.js"
   },
   "author": "jking",
   "license": "ISC",
