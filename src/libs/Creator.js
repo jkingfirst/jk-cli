@@ -3,6 +3,8 @@ import inquirer from 'inquirer'
 import ora from "ora";
 import chalk from "chalk";
 import downloadGit from './downloadGitRepo'
+import fs from 'fs-extra'
+import symbols from 'log-symbols'
 class Creator{
     constructor(projectName,targetDir,options) {
         this.projectName = projectName
@@ -18,6 +20,17 @@ class Creator{
                 reps.push(item.name)
             }
         })
+        const answer = await inquirer.prompt([
+            {
+                name: 'author',
+                message: 'Please enter the author name: '
+            },
+            {
+                name: 'description',
+                message: 'Please enter the project description: '
+            },
+        ])
+        console.log(answer, `${symbols.info}${symbols.success}${symbols.error}`)
         const {template} = await inquirer.prompt({
             name: 'template',
             type:'list',
@@ -27,7 +40,16 @@ class Creator{
         const spinner = ora(chalk.green('🚀 🚀 🚀 download...')).start();
         await downloadGit(`jkingfirst/${template}`,this.targetDir)
         spinner.succeed()
-        console.log(`\n\r 🍦🍦🍦 You successfully create ${chalk.cyan(this.projectName)} `)
+        let fileName = `${this.projectName}/package.json`
+        const jsonObj = await fs.readJson(fileName)
+        jsonObj.author = answer.author
+        jsonObj.description = answer.description
+        try{
+            await fs.writeJson(fileName, jsonObj)
+        }catch (e){
+            console.log(e)
+        }
+        console.log(symbols.success, chalk.green(`You successfully create ${chalk.cyan(this.projectName)} `));
         console.log(`\n\r cd ${chalk.cyan(this.projectName)}`)
         console.log('\n\r npm install')
         console.log('\n\r npm run serve')

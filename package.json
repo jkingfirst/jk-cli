@@ -27,7 +27,8 @@
   "devDependencies": {
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.17.10",
-    "@babel/preset-env": "^7.17.10"
+    "@babel/preset-env": "^7.17.10",
+    "log-symbols": "^3.0.0"
   },
   "type": "commonjs"
 }

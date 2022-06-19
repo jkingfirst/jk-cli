@@ -51,7 +51,7 @@ run ${_chalk.default.green('jvue <command> --help')} for detailed usage of given
     font: '3D-ASCII',
     horizontalLayout: 'default',
     verticalLayout: 'default',
-    width: 160,
+    width: 300,
     whitespaceBreak: true
   }, function (err, data) {
     if (err) {
