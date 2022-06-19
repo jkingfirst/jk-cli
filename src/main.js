@@ -4,6 +4,7 @@ const Inquirer = require('inquirer')
 import create from "./libs/create";
 import ora from 'ora'
 const figlet = require('figlet')
+import minimist from 'minimist'
 function camelize (str) {
     return str.replace(/-(\w)/g, (_, c) => c ? c.toUpperCase() : '')
 }
@@ -32,9 +33,16 @@ program
     .command('create <project-name>')
     .option('-f, --force', 'overwrite target directory if it exists')
     .description('create a new project')
-    .action((name,cmd)=>{
+    .action((name,options,command)=>{
+        console.log(options)
+        const opts = cleanArgs(command)
+        console.log(opts)
+        // console.log(command)
+        if (minimist(process.argv.slice(3))._.length > 1) {
+            console.log(chalk.yellow('\n Info: You provided more than one argument. The first one will be used as the app\'s name, the rest are ignored.'))
+        }
         // 创建项目
-        create(name,cmd)
+        // create(name,options)
     })
 program
     .command('config [value]')

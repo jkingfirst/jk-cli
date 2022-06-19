@@ -6,6 +6,8 @@ var _create = _interopRequireDefault(require("./libs/create"));
 
 var _ora = _interopRequireDefault(require("ora"));
 
+var _minimist = _interopRequireDefault(require("minimist"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const {
@@ -36,9 +38,16 @@ function cleanArgs(cmd) {
 }
 
 program.name('jvue-cli').version(`jvue-cli ${require('../package.json').version}`, '-v,--version', 'output the version number').usage('<command> [options]');
-program.name('jvue-cli').command('create <project-name>').option('-f, --force', 'overwrite target directory if it exists').description('create a new project').action((name, cmd) => {
-  // 创建项目
-  (0, _create.default)(name, cmd);
+program.name('jvue-cli').command('create <project-name>').option('-f, --force', 'overwrite target directory if it exists').description('create a new project').action((name, options, command) => {
+  console.log(options);
+  const opts = cleanArgs(command);
+  console.log(opts); // console.log(command)
+
+  if ((0, _minimist.default)(process.argv.slice(3))._.length > 1) {
+    console.log(_chalk.default.yellow('\n Info: You provided more than one argument. The first one will be used as the app\'s name, the rest are ignored.'));
+  } // 创建项目
+  // create(name,options)
+
 });
 program.command('config [value]').description('inspect and modify the config').option('-g, --get <path>', 'get value from option').option('-s, --set <path> <value>', 'set option value').option('-d, --delete <path>', 'delete option from config').option('-e, --edit', 'open config with default editor').option('--json', 'outputs JSON result only').action((name, options, command) => {
   console.log('------', name, options, command.options);
