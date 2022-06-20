@@ -42,10 +42,14 @@ class Creator{
         spinner.succeed()
         let fileName = `${this.projectName}/package.json`
         const jsonObj = await fs.readJson(fileName)
+        jsonObj.name = this.projectName
         jsonObj.author = answer.author
         jsonObj.description = answer.description
         try{
-            await fs.writeJson(fileName, jsonObj)
+            await fs.writeJson(fileName, jsonObj,{
+                spaces: 2,
+                EQL: '\t'
+            })
         }catch (e){
             console.log(e)
         }

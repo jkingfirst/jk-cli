@@ -42,7 +42,7 @@ program
             console.log(chalk.yellow('\n Info: You provided more than one argument. The first one will be used as the app\'s name, the rest are ignored.'))
         }
         // 创建项目
-        // create(name,options)
+        create(name,opts)
     })
 program
     .command('config [value]')
