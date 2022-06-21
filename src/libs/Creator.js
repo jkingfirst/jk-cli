@@ -48,13 +48,13 @@ class Creator{
         try{
             await fs.writeJson(fileName, jsonObj,{
                 spaces: 2,
-                EQL: '\t'
+                EQL: '\n'
             })
         }catch (e){
             console.log(e)
         }
         console.log(symbols.success, chalk.green(`You successfully create ${chalk.cyan(this.projectName)} `));
-        console.log(`\n\r cd ${chalk.cyan(this.projectName)}`)
+        console.log(`\n cd ${chalk.cyan(this.projectName)}`)
         console.log('\n\r npm install')
         console.log('\n\r npm run serve')
     }

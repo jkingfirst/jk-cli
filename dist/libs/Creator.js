@@ -60,14 +60,14 @@ class Creator {
     try {
       await _fsExtra.default.writeJson(fileName, jsonObj, {
         spaces: 2,
-        EQL: '\t'
+        EQL: '\n'
       });
     } catch (e) {
       console.log(e);
     }
 
     console.log(_logSymbols.default.success, _chalk.default.green(`You successfully create ${_chalk.default.cyan(this.projectName)} `));
-    console.log(`\n\r cd ${_chalk.default.cyan(this.projectName)}`);
+    console.log(`\n cd ${_chalk.default.cyan(this.projectName)}`);
     console.log('\n\r npm install');
     console.log('\n\r npm run serve');
   }
