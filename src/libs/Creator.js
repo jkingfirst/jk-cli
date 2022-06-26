@@ -6,13 +6,12 @@ import downloadGit from './downloadGitRepo'
 import fs from 'fs-extra'
 import symbols from 'log-symbols'
 class Creator{
-    constructor(projectName,targetDir,options) {
+    constructor(projectName,targetDir) {
         this.projectName = projectName
         this.targetDir = targetDir
-        this.options = options
     }
     async create(){
-        console.log(this.targetDir, this.options)
+        console.log(this.targetDir)
         let reponsitoryList = await repositoryInfo()
         let reps = []
             reponsitoryList.forEach(item => {
@@ -30,7 +29,6 @@ class Creator{
                 message: 'Please enter the project description: '
             },
         ])
-        console.log(answer, `${symbols.info}${symbols.success}${symbols.error}`)
         const {template} = await inquirer.prompt({
             name: 'template',
             type:'list',
@@ -38,8 +36,12 @@ class Creator{
             choices:reps,
         })
         const spinner = ora(chalk.green('🚀 🚀 🚀 download...')).start();
-        await downloadGit(`jkingfirst/${template}`,this.targetDir)
-        spinner.succeed()
+        try{
+            await downloadGit(`jkingfirst/${template}`,this.targetDir)
+            spinner.succeed()
+        } catch (e) {
+            console.log(`${symbols.error}`,e)
+        }
         let fileName = `${this.projectName}/package.json`
         const jsonObj = await fs.readJson(fileName)
         jsonObj.name = this.projectName

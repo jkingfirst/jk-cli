@@ -17,14 +17,13 @@ var _logSymbols = _interopRequireDefault(require("log-symbols"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class Creator {
-  constructor(projectName, targetDir, options) {
+  constructor(projectName, targetDir) {
     this.projectName = projectName;
     this.targetDir = targetDir;
-    this.options = options;
   }
 
   async create() {
-    console.log(this.targetDir, this.options);
+    console.log(this.targetDir);
     let reponsitoryList = await (0, _repository.repositoryInfo)();
     let reps = [];
     reponsitoryList.forEach(item => {
@@ -39,7 +38,6 @@ class Creator {
       name: 'description',
       message: 'Please enter the project description: '
     }]);
-    console.log(answer, `${_logSymbols.default.info}${_logSymbols.default.success}${_logSymbols.default.error}`);
     const {
       template
     } = await _inquirer.default.prompt({
@@ -49,8 +47,14 @@ class Creator {
       choices: reps
     });
     const spinner = (0, _ora.default)(_chalk.default.green('🚀 🚀 🚀 download...')).start();
-    await (0, _downloadGitRepo.default)(`jkingfirst/${template}`, this.targetDir);
-    spinner.succeed();
+
+    try {
+      await (0, _downloadGitRepo.default)(`jkingfirst/${template}`, this.targetDir);
+      spinner.succeed();
+    } catch (e) {
+      console.log(`${_logSymbols.default.error}`, e);
+    }
+
     let fileName = `${this.projectName}/package.json`;
     const jsonObj = await _fsExtra.default.readJson(fileName);
     jsonObj.name = this.projectName;
