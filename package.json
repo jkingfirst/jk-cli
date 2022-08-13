@@ -31,5 +31,15 @@
     "@babel/preset-env": "^7.17.10",
     "log-symbols": "^3.0.0"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "keywords": [
+    "jvue",
+    "cli",
+    "vue"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jkingfirst/jk-cli.git",
+    "directory": "src"
+  }
 }
